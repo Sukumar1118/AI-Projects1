@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}All posts | FastAPI Blog{% endblock %}
+
+{% block content %}
+<!-- The heading introduces the list page and gives it a clear hierarchy. -->
+<section class="page-heading">
+    <p class="eyebrow">The blog</p>
+    <h1>All posts</h1>
+    <p class="intro">Browse the latest notes from our authors.</p>
+</section>
+<!-- Jinja repeats one article card per post and shows a fallback for an empty list. -->
+<section class="post-list" aria-label="Blog posts">
+    {% for post in posts %}
+    <article class="post-card">
+        <p class="post-meta">By {{ post.author }} <span aria-hidden="true">·</span> {{ post.date_posted }}</p>
+        <h2><a href="{{ url_for('post_page', post_id=post.id) }}">{{ post.title }}</a></h2>
+        <p>{{ post.content }}</p>
+        <a class="read-more" href="{{ url_for('post_page', post_id=post.id) }}">Read post <span aria-hidden="true">→</span></a>
+    </article>
+    {% else %}
+    <p class="empty-state">There are no posts yet.</p>
+    {% endfor %}
+</section>
+{% endblock %}

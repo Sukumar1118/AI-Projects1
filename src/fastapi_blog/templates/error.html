@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ status_code }} | FastAPI Blog{% endblock %}
+
+{% block content %}
+<!-- One reusable error template presents validation, HTTP, and server failures. -->
+<section class="error-card">
+    <p class="eyebrow">Request error</p>
+    <h1>{{ status_code }}</h1>
+    <p>{{ message }}</p>
+    {% if errors %}
+    <ul class="error-list">
+        {% for error in errors %}
+        <li>{{ error.msg }} ({{ error.loc | join(" → ") }})</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <a class="button-link" href="{{ url_for('browse_posts') }}">Back to all posts</a>
+</section>
+{% endblock %}

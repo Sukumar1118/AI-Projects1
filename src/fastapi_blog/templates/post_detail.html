@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} | FastAPI Blog{% endblock %}
+
+{% block content %}
+<!-- One semantic article presents the selected post and links back to the list. -->
+<article class="post-detail">
+    <a class="back-link" href="{{ url_for('browse_posts') }}">← All posts</a>
+    <p class="eyebrow">By {{ post.author }} · {{ post.date_posted }}</p>
+    <h1>{{ post.title }}</h1>
+    <p class="post-content">{{ post.content }}</p>
+</article>
+{% endblock %}

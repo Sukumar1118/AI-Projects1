@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Metadata makes the page responsive and gives the browser a useful title. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}FastAPI Blog{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <!-- Shared site navigation is inherited by every page template. -->
+    <header class="site-header">
+        <a class="brand" href="{{ url_for('browse_posts') }}">FastAPI Blog</a>
+        <nav aria-label="Main navigation">
+            <a href="{{ url_for('browse_posts') }}">All posts</a>
+            <a href="/docs">JSON API docs</a>
+        </nav>
+    </header>
+    <!-- Child templates insert their page-specific content into this main region. -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <!-- A shared footer avoids repeating layout markup on each page. -->
+    <footer class="site-footer">A small example of FastAPI, Jinja templates, and JSON.</footer>
+</body>
+</html>
